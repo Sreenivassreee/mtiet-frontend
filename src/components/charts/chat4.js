@@ -16,7 +16,7 @@ const Chats3 = () => {
     const [recordList, setRecordList] = useState([]);
 
     const getRecord = () => {
-        var url = "https://mti-apidata.onrender.com/student";
+        var url = "https://mtiet-api-v2.onrender.com/student";
         axios.get(url).then(response => {
             let test = response.data.filter(student => student.rollnumber == rollnumber);
             setRecordList(test)

@@ -1,14 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
+import axios from "axios";
 import Chart from "react-apexcharts";
 
-
 const Chats1 = () => {
-
-
-
-
   const { rollnumber } = useParams(); // it use to capture value coming to url/path
 
   const [show, setShow] = useState(false);
@@ -16,25 +11,22 @@ const Chats1 = () => {
   const [recordList, setRecordList] = useState([]);
 
   const getRecord = () => {
-    var url = "https://mti-apidata.onrender.com/student";
-    axios.get(url).then(response => {
-      let test = response.data.filter(student => student.rollnumber == rollnumber);
-      setRecordList(test)
+    var url = "https://mtiet-api-v2.onrender.com/student";
+    axios.get(url).then((response) => {
+      let test = response.data.filter(
+        (student) => student.rollnumber == rollnumber
+      );
+      setRecordList(test);
       // console.log(test)
-    })
-  }
+    });
+  };
 
   useEffect(() => {
     getRecord();
-
-  }, [true])
+  }, [true]);
 
   return (
     <React.Fragment>
-
-
-
-
       <div>
         <h3>Academics Development</h3>
 
@@ -52,33 +44,26 @@ const Chats1 = () => {
               <th>Robotics</th>
               <th>General Knowledge</th>
               <th>Value Eduacation</th>
-
             </tr>
           </thead>
           <tbody>
-            {
-              recordList.map((studentinfo) => {
-                return (
-                  <tr key={studentinfo.id}>
-
-                    <td>{studentinfo.english}</td>
-                    <td>{studentinfo.hindi}</td>
-                    <td>{studentinfo.telugu}</td>
-                    <td>{studentinfo.maths}</td>
-                    <td>{studentinfo.science}</td>
-                    <td>{studentinfo.social}</td>
-                    <td>{studentinfo.es}</td>
-                    <td>{studentinfo.ict}</td>
-                    <td>{studentinfo.robotics}</td>
-                    <td>{studentinfo.gk}</td>
-                    <td>{studentinfo.ve}</td>
-
-
-                  </tr>
-                );
-              })
-            }
-
+            {recordList.map((studentinfo) => {
+              return (
+                <tr key={studentinfo.id}>
+                  <td>{studentinfo.english}</td>
+                  <td>{studentinfo.hindi}</td>
+                  <td>{studentinfo.telugu}</td>
+                  <td>{studentinfo.maths}</td>
+                  <td>{studentinfo.science}</td>
+                  <td>{studentinfo.social}</td>
+                  <td>{studentinfo.es}</td>
+                  <td>{studentinfo.ict}</td>
+                  <td>{studentinfo.robotics}</td>
+                  <td>{studentinfo.gk}</td>
+                  <td>{studentinfo.ve}</td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
 
@@ -105,117 +90,110 @@ const Chats1 = () => {
                   <td> {studentinfo.iitr} </td>
                   <td> {studentinfo.neetb} </td>
                   <td> {studentinfo.neetz} </td>
-
                 </tr>
               );
-            })
-            }
-
+            })}
           </tbody>
         </table>
       </div>
 
-<div className='chats'>
-      {recordList.map((info) => {
-        return (
-          <Chart key={info.id}
-            options={{
+      <div className="chats">
+        {recordList.map((info) => {
+          return (
+            <Chart
+              key={info.id}
+              options={{
+                title: { text: "Sutdents Marks graph" },
 
-              title: { text: "Sutdents Marks graph" },
-
-              xaxis: {
-                title: { text: "Subjects" },
-                categories: ["Academic"]
-              },
-              yaxis: {
-                title: { text: "Marks" }
-              }
-            }}
-            series={
-              [
+                xaxis: {
+                  title: { text: "Subjects" },
+                  categories: ["Academic"],
+                },
+                yaxis: {
+                  title: { text: "Marks" },
+                },
+              }}
+              series={[
                 {
                   name: "English",
-                  data: [info.english]
+                  data: [info.english],
                 },
                 {
                   name: "Hindi",
-                  data: [info.hindi]
+                  data: [info.hindi],
                 },
                 {
                   name: "Telugu",
-                  data: [info.telugu]
+                  data: [info.telugu],
                 },
                 {
                   name: "Maths",
-                  data: [info.maths]
+                  data: [info.maths],
                 },
                 {
                   name: "Science",
-                  data: [info.science]
+                  data: [info.science],
                 },
                 {
                   name: "Social",
-                  data: [info.social]
+                  data: [info.social],
                 },
                 {
                   name: "Environmental Sciente",
-                  data: [info.es]
+                  data: [info.es],
                 },
                 {
                   name: "ICT",
-                  data: [info.ict]
+                  data: [info.ict],
                 },
                 {
                   name: "Robotics",
-                  data: [info.robotics]
+                  data: [info.robotics],
                 },
                 {
                   name: "General Knowledge",
-                  data: [info.gk]
+                  data: [info.gk],
                 },
                 {
                   name: "Value Eduacation",
-                  data: [info.ve]
+                  data: [info.ve],
                 },
                 {
                   name: "Life Skills",
-                  data: [info.skills]
+                  data: [info.skills],
                 },
                 {
                   name: "IIT-Maths",
-                  data: [info.iitm]
+                  data: [info.iitm],
                 },
                 {
                   name: "IIT-Physics",
-                  data: [info.iitp]
+                  data: [info.iitp],
                 },
                 {
                   name: "IIT-Chemistry",
-                  data: [info.iitc]
+                  data: [info.iitc],
                 },
                 {
                   name: "IIT-Reasoning",
-                  data: [info.iitr]
+                  data: [info.iitr],
                 },
                 {
                   name: "NEET-Biology",
-                  data: [info.neetb]
+                  data: [info.neetb],
                 },
                 {
                   name: "NEET-Zoology",
-                  data: [info.neetz]
-                }
-
-              ]
-            }
-            type="bar"
-            width="600"
-          />
-        );
-      })
-      }
+                  data: [info.neetz],
+                },
+              ]}
+              type="bar"
+              width="600"
+            />
+          );
+        })}
       </div>
     </React.Fragment>
-  )
-}
+  );
+};
 export default Chats1;
